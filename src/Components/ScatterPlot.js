@@ -1,6 +1,7 @@
 import React from 'react';
 import * as d3 from 'd3'
 import DataPoint from './DataPoint';
+import AxisContainer from '../Containers/AxisContainer';
 
 export default class ScatterPlot extends React.Component {
 
@@ -31,6 +32,8 @@ export default class ScatterPlot extends React.Component {
             />
           ))
         }
+        <AxisContainer orient="x" scale={xScale} />
+        <AxisContainer orient="y" scale={yScale} />
       </svg>
     )
   }

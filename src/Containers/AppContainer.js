@@ -1,18 +1,17 @@
 import { connect } from 'react-redux';
 import App from '../Components/App';
-import {createRandomDataAction} from '../actions';
-
-const mapStateToProps = () => ({
-  
-});
+import { createRandomDataAction, CSVDataActionAsync } from '../actions';
 
 const mapDispatchToProps = (dispatch) => ({
   getRandomData: () => {
     dispatch(createRandomDataAction())
+  },
+  uploadCSV: (evt) => {
+    dispatch(CSVDataActionAsync(evt))
   }
 });
 
 export default connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps
 )(App);

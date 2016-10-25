@@ -6,11 +6,6 @@ const mapStateToProps = ({chartData, chartDimensions}) => ({
   chartDimensions
 });
 
-const mapDispatchToProps = () => ({
-  
-});
-
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+  mapStateToProps
 )(ScatterPlot);

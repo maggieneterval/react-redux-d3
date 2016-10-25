@@ -1,14 +1,24 @@
+import { handleFiles, generateData } from './utilities';
+
+//constants:
 export const GET_RANDOM_DATA = 'GET_RANDOM_DATA';
+export const GET_CSV_DATA = 'GET_CSV_DATA';
 
-const generateData = (numPoints, min, max) => {
-  const arr = [];
-  for (var i = 0; i < numPoints; i++) {
-    arr.push([Math.random() * (max - min) + min, Math.random() * (max - min) + min])
-  }
-  return arr;
-}
-
+//sync action creators:
 export const createRandomDataAction = () => ({
   type: GET_RANDOM_DATA,
   data: generateData(20, 0, 100)
 })
+
+export const CSVDataActionSync = (data) => ({
+  type: GET_CSV_DATA,
+  data
+})
+
+//async action creators:
+export const CSVDataActionAsync = (fileUploadEvent) => {
+ return (dispatch) => {
+   handleFiles(fileUploadEvent)
+   .then(data => dispatch(CSVDataActionSync(data)))
+ }
+}
