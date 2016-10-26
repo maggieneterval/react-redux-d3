@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>vanilla d3 scatterplot</title>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <style>
+      body {
+        font-family: 'Garamond', serif;
+      }
+      .flexcontainer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root" class="flexcontainer">
+      <h1>vanilla d3 scatterplot</h1>
+    </div>
+  </body>
+  <script>
+
+    //data and constants:
+    const dataset = [[2, 15], [4, 9], [16, 1], [20, 13]];
+    const width = 500;
+    const height = 300;
+    const padding = 25;
+    const radius = 3;
+
+    //scales:
+    const xScale = d3.scaleLinear()
+      .domain([0, d3.max(dataset, d => d[0])])
+      .range([padding, width - padding * 2]);
+
+    const yScale = d3.scaleLinear()
+      .domain([0, d3.max(dataset, d => d[1])])
+      .range([height - padding, padding]);
+
+    //axes:
+    const xAxis = d3.axisBottom(xScale);
+    const yAxis = d3.axisLeft(yScale);
+
+    //svg:
+    const svg = d3.select('#root')
+      .append('svg')
+      .attr('width', width)
+      .attr('height', height)
+    
+    //d3 magic:
+     svg.selectAll('circle')
+      .data(dataset)
+      .enter()
+      .append('circle')
+      .attr('cx', d => xScale(d[0]))
+      .attr('cy', d => yScale(d[1]))
+      .attr('r', radius);
+    
+    svg.append("g")
+      .attr("transform", `translate(0, ${height - padding})`)
+      .call(xAxis);
+
+    svg.append("g")
+      .attr('transform', `translate(${padding}, 0)`)
+      .call(yAxis)
+
+  </script>
+</html>

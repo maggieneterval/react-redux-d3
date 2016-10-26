@@ -1,18 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
+import { Router, Route, IndexRedirect, browserHistory } from 'react-router';
 import store from './store';
 import AppContainer from './Containers/AppContainer';
+import ScatterPlotContainer from './Containers/ScatterPlotContainer';
+import BarChartContainer from './Containers/BarChartContainer';
 import './index.css';
-import injectTapEventPlugin from 'react-tap-event-plugin';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-injectTapEventPlugin();
 
 ReactDOM.render(
   <Provider store={store}>
-    <MuiThemeProvider>
-      <AppContainer />
-    </MuiThemeProvider>
+    <Router history={browserHistory}>
+      <Route path="/" component={AppContainer}>
+        <IndexRedirect to="scatterplot" />
+        <Route path="scatterplot" component={ScatterPlotContainer} />
+        <Route path="barchart" component={BarChartContainer} />
+      </Route>
+    </Router>
   </Provider>,
   document.getElementById('root')
 );

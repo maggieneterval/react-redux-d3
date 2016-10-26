@@ -3,7 +3,7 @@ import { GET_RANDOM_DATA, GET_CSV_DATA } from '../actions';
 const initialState = {
   chartData: [[1,10], [2,7], [9, 14]],
   chartDimensions: {
-    width: 300,
+    width: 500,
     height: 300,
     padding: 25
   }
