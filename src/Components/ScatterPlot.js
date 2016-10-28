@@ -2,6 +2,7 @@ import React from 'react';
 import * as d3 from 'd3'
 import DataPoint from './DataPoint';
 import AxisContainer from '../Containers/AxisContainer';
+import ChartOptionsContainer from '../Containers/ChartOptionsContainer';
 
 export default class ScatterPlot extends React.Component {
 
@@ -21,20 +22,23 @@ export default class ScatterPlot extends React.Component {
       .range([height - padding, padding]);
     
     return (
-      <svg width={width} height={height}>
-        {
-          chartData.map((datum, index) => (
-            <DataPoint
-              key={index}
-              datum={datum}
-              xScale={xScale}
-              yScale={yScale}
-            />
-          ))
-        }
-        <AxisContainer orient="x" scale={xScale} />
-        <AxisContainer orient="y" scale={yScale} />
-      </svg>
+      <div>
+        <svg width={width} height={height}>
+            {
+              chartData.map((datum, index) => (
+                <DataPoint
+                  key={index}
+                  datum={datum}
+                  xScale={xScale}
+                  yScale={yScale}
+                />
+              ))
+            }
+          <AxisContainer orient="x" scale={xScale} />
+          <AxisContainer orient="y" scale={yScale} />
+        </svg>
+        <ChartOptionsContainer chartType="scatterplot"/>
+      </div>
     )
   }
 

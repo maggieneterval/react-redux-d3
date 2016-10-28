@@ -1,14 +1,11 @@
 import React from 'react';
-import ScatterPlotContainer from '../Containers/ScatterPlotContainer';
+import Nav from './Nav';
+import { Link } from 'react-router';
 
-
-export default ({getRandomData, uploadCSV, children}) => (
+export default ({children}) => (
   <div className="flexcontainer">
-    <h1>react + redux + d3</h1>
+    <Link to="/home" className="homelink"><h1>react + redux + d3</h1></Link>
+    <Nav />
     {children}
-    <div>
-      <button onClick={getRandomData}>Get random data</button>
-      <input type="file" id="csvFileInput" onChange={uploadCSV} accept=".csv" />
-    </div>
   </div>
-);
+)

@@ -21,10 +21,14 @@ export const handleFiles = (event) => {
   }
 }
 
-export const generateData = (numPoints, min, max) => {
+export const generateData = (numElements, pointsPerElement, min, max) => {
   const arr = [];
-  for (var i = 0; i < numPoints; i++) {
-    arr.push([Math.random() * (max - min) + min, Math.random() * (max - min) + min])
+  for (let i = 0; i < numElements; i++) {
+    let subArr = [];
+    for (let j = 0; j < pointsPerElement; j++){
+      subArr.push(Math.random() * (max - min) + min);
+    }
+    arr.push(subArr);
   }
   return arr;
 }

@@ -5,9 +5,9 @@ export const GET_RANDOM_DATA = 'GET_RANDOM_DATA';
 export const GET_CSV_DATA = 'GET_CSV_DATA';
 
 //sync action creators:
-export const createRandomDataAction = () => ({
+export const createRandomDataAction = (numElements, pointsPerElement, min, max) => ({
   type: GET_RANDOM_DATA,
-  data: generateData(20, 0, 100)
+  data: generateData(numElements, pointsPerElement, min, max)
 })
 
 export const CSVDataActionSync = (data) => ({
